@@ -15,6 +15,7 @@
  */
 package com.example.pet.web;
 
+import java.net.URL;
 import java.util.Collection;
 import java.util.Map;
 
@@ -36,9 +37,18 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Arjen Poutsma
  * @author Michael Isvy
  */
-@Controller
+@RestController
 public class OwnerController {
 
+	private static String base_url = "http://localhost:9030/Owner/";
+	
+	@GetMapping("owner/{id}")
+	public String getOwner(@PathVariable Long id) throws Exception {
+		 URL url = new URL(base_url);
+		return "";
+	}
+	
+	/*
     private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
     private final ClinicService clinicService;
 
@@ -118,18 +128,19 @@ public class OwnerController {
             return "redirect:/owners/{ownerId}";
         }
     }
-
+*/
     /**
      * Custom handler for displaying an owner.
      *
      * @param ownerId the ID of the owner to display
      * @return a ModelMap with the model attributes for the view
      */
+	/*
     @GetMapping("/owners/{ownerId}")
     public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
         ModelAndView mav = new ModelAndView("owners/ownerDetails");
         mav.addObject(this.clinicService.findOwnerById(ownerId));
         return mav;
-    }
+    }*/
 
 }
