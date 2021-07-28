@@ -3,6 +3,7 @@ package com.example.pet.cliente.control;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,40 +12,26 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import com.example.pet.cliente.model.Client;
-import com.example.pet.cliente.repository.ClienteRepository;
+
+import com.example.pet.cliente.model.Owner;
+import com.example.pet.cliente.repository.OwnerRepository;
 
 @RestController
-@RequestMapping("/Clients")
+@RequestMapping("/Owner")
 @CrossOrigin(origins="*")
-public class ClientService 
+public class OwnerController 
 {
 	@Autowired
-	ClienteRepository clienteRepository;
+	OwnerRepository ownerRepository;
 	
 	final static String ROOT_URI = "http://localhost:";
 	
 	@PostMapping("/new")
-	public String cadastroClient(@RequestBody Client cliente) 
+	public String createOwner(@RequestBody Owner owner) 
 	{
 		try 
 		{
-			clienteRepository.save(cliente);
-		}catch(Exception e) 
-		{
-			return "error";
-		}
-		
-		return "Success";
-	}
-	
-	@PutMapping("/edit")
-	public String updateClient(@RequestBody Client cliente)
-	{
-		try 
-		{
-			clienteRepository.save(cliente);
+			ownerRepository.save(owner);
 		}catch(Exception e) 
 		{
 			return "error";
@@ -54,11 +41,11 @@ public class ClientService
 	}
 	
 	@GetMapping("/all")
-	public List<Client> getAll() 
+	public List<Owner> getOwners() 
 	{
 		try 
 		{
-			return clienteRepository.findAll();
+			return ownerRepository.findAll();
 		}catch(Exception e) 
 		{
 			return null;
@@ -66,23 +53,37 @@ public class ClientService
 	}
 	
 	@GetMapping("/{id}")
-	public Client getClient(@PathVariable Long id) 
+	public Owner getOwner(@PathVariable Long id) 
 	{
 		try 
 		{
-			return clienteRepository.findById(id).get();
+			return ownerRepository.findById(id).get();
 		}catch(Exception e) 
 		{
 			return null;
 		}
 	}
 	
-	@DeleteMapping("/delete/{id}")
-	public String deleteClient(@PathVariable Long id)
+	@PutMapping("/edit")
+	public String editOwner(@RequestBody Owner owner) 
 	{
 		try 
 		{
-			clienteRepository.deleteById(id);
+			ownerRepository.save(owner);
+		}catch(Exception e) 
+		{
+			return "error";
+		}
+		
+		return "Success";
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public String deleteOwner(@PathVariable Long id)
+	{
+		try 
+		{
+			ownerRepository.deleteById(id);
 		}catch(Exception e) 
 		{
 			return "Error";

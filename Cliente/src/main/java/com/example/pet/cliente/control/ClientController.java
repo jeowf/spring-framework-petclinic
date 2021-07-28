@@ -3,7 +3,6 @@ package com.example.pet.cliente.control;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,26 +11,40 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.pet.cliente.model.Owner;
-import com.example.pet.cliente.repository.OwnerRepository;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import com.example.pet.cliente.model.Client;
+import com.example.pet.cliente.repository.ClienteRepository;
 
 @RestController
-@RequestMapping("/Owner")
+@RequestMapping("/Clients")
 @CrossOrigin(origins="*")
-public class OwnerService 
+public class ClientController 
 {
 	@Autowired
-	OwnerRepository ownerRepository;
+	ClienteRepository clienteRepository;
 	
 	final static String ROOT_URI = "http://localhost:";
 	
 	@PostMapping("/new")
-	public String createOwner(@RequestBody Owner owner) 
+	public String cadastroClient(@RequestBody Client cliente) 
 	{
 		try 
 		{
-			ownerRepository.save(owner);
+			clienteRepository.save(cliente);
+		}catch(Exception e) 
+		{
+			return "error";
+		}
+		
+		return "Success";
+	}
+	
+	@PutMapping("/edit")
+	public String updateClient(@RequestBody Client cliente)
+	{
+		try 
+		{
+			clienteRepository.save(cliente);
 		}catch(Exception e) 
 		{
 			return "error";
@@ -41,11 +54,11 @@ public class OwnerService
 	}
 	
 	@GetMapping("/all")
-	public List<Owner> getOwners() 
+	public List<Client> getAll() 
 	{
 		try 
 		{
-			return ownerRepository.findAll();
+			return clienteRepository.findAll();
 		}catch(Exception e) 
 		{
 			return null;
@@ -53,37 +66,23 @@ public class OwnerService
 	}
 	
 	@GetMapping("/{id}")
-	public Owner getOwner(@PathVariable Long id) 
+	public Client getClient(@PathVariable Long id) 
 	{
 		try 
 		{
-			return ownerRepository.findById(id).get();
+			return clienteRepository.findById(id).get();
 		}catch(Exception e) 
 		{
 			return null;
 		}
 	}
 	
-	@PutMapping("/edit")
-	public String editOwner(@RequestBody Owner owner) 
-	{
-		try 
-		{
-			ownerRepository.save(owner);
-		}catch(Exception e) 
-		{
-			return "error";
-		}
-		
-		return "Success";
-	}
-	
 	@DeleteMapping("/delete/{id}")
-	public String deleteOwner(@PathVariable Long id)
+	public String deleteClient(@PathVariable Long id)
 	{
 		try 
 		{
-			ownerRepository.deleteById(id);
+			clienteRepository.deleteById(id);
 		}catch(Exception e) 
 		{
 			return "Error";
