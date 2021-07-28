@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <div class="container">
+    <div class="container dim">
+      <br />
+      <br />
+      <br />
+      
       <form @submit.prevent="login">
-        <label>Username</label>
         <input type="text" placeholder="Username" v-model="user.username" />
-        <label>Password</label>
         <input type="password" placeholder="Password" v-model="user.password" />
 
         <button class="waves-effect waves-light btn-small">
@@ -16,38 +18,43 @@
 </template>
 
 <script>
-import Auth from '@/services/auth'
+import Auth from "@/services/auth";
 
 export default {
-
-  data(){
+  data() {
     return {
       user: {
-        id : '',
-        name : '',
-        username : '',
-        password : '',
-        role : ''
+        id: "",
+        name: "",
+        username: "",
+        password: "",
+        role: "",
       },
-      users: []
-    }
+      users: [],
+    };
   },
 
-  mounted(){
-    
+  mounted() {},
+
+  methods: {
+    login() {
+      Auth.login(this.user).then((resposta) => {
+        console.log(resposta.data);
+        if (resposta.data) {
+          this.$router.push(this.$route.query.redirect || "/");
+          localStorage.setItem("user-id", resposta.data.id);
+          localStorage.setItem("user-role", resposta.data.role);
+          localStorage.setItem("logged", true);
+        }
+      });
+    },
   },
-
-  methods:{
-    login(){
-      Auth.login(this.user).then(resposta => {
-        console.log(resposta.data)
-      })
-    }
-  }
-
-}
-
+};
 </script>
 
 <style>
+.dim{
+    width: 40% !important;
+
+}
 </style>

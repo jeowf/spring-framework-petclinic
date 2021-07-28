@@ -7,6 +7,7 @@
         <li><a href="sass.html">Sass</a></li>
         <li><a href="badges.html">Components</a></li>
         <li><a href="collapsible.html">JavaScript</a></li>
+        <li><a href="/login" v-on:click="loggout"> Loggout </a></li>
       </ul>
     </div>
   </nav>
@@ -21,7 +22,22 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  data() {
+    return {
+      //logged: localStorage.getItem("logged")
+    };
+  },
+  methods: {
+    loggout: function () {
+      localStorage.setItem("logged", false)
+      localStorage.removeItem("user-id")
+      localStorage.removeItem("user-role")
+    },
+    loggoutcheck: function () {
+      return this.$router.history.current["path"].includes("login");
+    }
+  }
 }
 /*
 import Auth from './services/auth'
