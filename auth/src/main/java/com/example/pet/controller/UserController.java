@@ -27,6 +27,7 @@ public class UserController {
 	@PostMapping("/new")
 	public String newUser(@RequestBody User user) {
 		try {
+			user.setRole("client");
 			userRepository.save(user);
 			
 			return "Success";

@@ -36,12 +36,14 @@ import {createRouter, createWebHistory} from 'vue-router'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 import HelloWorld from '@/components/HelloWorld'
+import Owner from '@/components/Owner'
+import Client from '@/components/Client'
 
 const routes = [
     {
-        path: '/',
-        name: 'Hello',
-        component: HelloWorld
+      path: '/',
+      name: 'Hello',
+      component: HelloWorld
     },
     {
       path: '/login',
@@ -52,6 +54,16 @@ const routes = [
       path: '/register',
       name: 'Register',
       component: Register
+    },
+    {
+      path: '/Owner',
+      name: 'Owner',
+      component: Owner
+    },
+    {
+      path: '/Client',
+      name: 'Client',
+      component: Client
     }
 ]
 
