@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import com.example.pet.cliente.model.Client;
 import com.example.pet.cliente.repository.ClienteRepository;
 
 @RestController
 @RequestMapping("/Clients")
-public class ClientService 
+@CrossOrigin(origins="*")
+public class ClientController 
 {
 	@Autowired
 	ClienteRepository clienteRepository;
