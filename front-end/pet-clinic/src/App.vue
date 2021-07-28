@@ -2,12 +2,10 @@
 
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Pet Clinic</a>
+      <a href="#" class="brand-logo"> <router-link to="/"> Pet Clinic </router-link></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">JavaScript</a></li>
-        <li><a href="/login" v-on:click="loggout"> Loggout </a></li>
+        <li><a> <router-link to="/Owner"> Owner </router-link> </a></li>
+        <li><a> <router-link to="/Client"> Client </router-link> </a></li>
       </ul>
     </div>
   </nav>
