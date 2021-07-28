@@ -22,6 +22,8 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+
 import com.example.pet.model.Owner;
 import com.example.pet.service.ClinicService;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -38,14 +41,60 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Michael Isvy
  */
 @RestController
+@RequestMapping("/owner")
+@CrossOrigin(origins="*")
 public class OwnerController {
 
 	private static String base_url = "http://localhost:9030/Owner/";
 	
-	@GetMapping("owner/{id}")
-	public String getOwner(@PathVariable Long id) throws Exception {
-		 URL url = new URL(base_url);
-		return "";
+	@GetMapping("/{id}")
+	public String getOwner(@PathVariable Long id) {
+		RestTemplate restTemplate = new RestTemplate();
+		String uri = base_url + id;
+		System.out.println(uri);
+		ResponseEntity<String> response = restTemplate.getForEntity(uri, String.class);
+		
+		return response.getBody();
+	}
+	
+	@GetMapping("/all")
+	public String getOwners() {
+		RestTemplate restTemplate = new RestTemplate();
+		String uri = base_url + "all";
+		System.out.println(uri);
+		ResponseEntity<String> response = restTemplate.getForEntity(uri, String.class);
+		
+		return response.getBody();
+	}
+	
+	@PostMapping("/new")
+	public String createOwner(@RequestBody Map<String, Object> model) {
+		RestTemplate restTemplate = new RestTemplate();
+		String uri = base_url + "new";
+		System.out.println(uri);
+		ResponseEntity<String> response = restTemplate.postForEntity(uri, model, String.class);
+		
+		return response.getBody();
+	}
+	
+	@PutMapping("/edit")
+	public String editOwner(@RequestBody Map<String, Object> model) {
+		RestTemplate restTemplate = new RestTemplate();
+		String uri = base_url + "edit";
+		System.out.println(uri);
+		restTemplate.put(uri, model);
+		
+		return "Sucess";
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public String deleteOwner(@PathVariable Long id) {
+		RestTemplate restTemplate = new RestTemplate();
+		String uri = base_url + "delete/" + id;
+		System.out.println(uri);
+		restTemplate.delete(uri);
+		
+		return "Success";
 	}
 	
 	/*
