@@ -33,7 +33,7 @@
 
 
 
-    <a> <router-link to="/login"> clica em mim vai ;) </router-link> </a>
+    <a> <router-link to="/Owner"> clica em mim vai ;) </router-link> </a>
   </div>
 </template>
 
