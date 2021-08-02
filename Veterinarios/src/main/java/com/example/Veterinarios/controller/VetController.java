@@ -26,6 +26,8 @@ public class VetController {
 	@Autowired
 	VetRepository vetRepository; 
 	
+	final static String ROOT_URI = "http://localhost:";
+	
 	@PostMapping("/")
 	public String newVet(@RequestBody NewVetRequest request) {
 		Vet vet = request.toModel();
