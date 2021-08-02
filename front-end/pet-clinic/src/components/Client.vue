@@ -23,6 +23,7 @@
 
           <tr>
             <th>First Name</th>
+            <th>First Name</th>
             <th>Last Name</th>
             <th>CPF</th>
             <th>Brithdate</th>
