@@ -4,6 +4,6 @@ server.port=9031
 
 #Banco local
 spring.datasource.url= jdbc:postgresql://localhost:5432/pet-clinic
-spring.datasource.username=petclinic
+spring.datasource.username=postgres
 spring.datasource.password=pet-show
 spring.jpa.hibernate.ddl-auto=update
