@@ -48,7 +48,8 @@ import {
   import Login from '@/components/Login'
   import Register from '@/components/Register'
   import HelloWorld from '@/components/HelloWorld'
-  
+  import Vet from '@/components/Vet'
+
   const routes = [
     {
         path: '/',
@@ -64,6 +65,11 @@ import {
       path: '/register',
       name: 'Register',
       component: Register
+    },
+    {
+      path: '/vet',
+      name: 'Vet',
+      component: Vet
     }
 ]
   

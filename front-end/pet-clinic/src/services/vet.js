@@ -7,11 +7,11 @@ export default {
     },
 
     salvar:(vet) => {
-        return http.post('', vet)
+        return http.post('/', vet)
     },
 
     atualizar:(vet) =>{
-        return http.put('', vet)
+        return http.put('/', vet)
     },
 
     apagar:(id) =>
