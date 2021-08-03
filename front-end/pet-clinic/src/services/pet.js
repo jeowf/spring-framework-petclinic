@@ -3,7 +3,7 @@ import { http } from './configPet'
 export default {
 
     listar:(owner_id)=>{
-        return http.get('all'.concat(owner_id))
+        return http.get('all/'.concat(owner_id))
     },
 
     salvar:(pet) => {

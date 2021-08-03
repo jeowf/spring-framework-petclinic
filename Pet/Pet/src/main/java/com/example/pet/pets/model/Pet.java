@@ -102,7 +102,7 @@ public class Pet {
 		this.ownerId = ownerId;
 	}
 
-	public Pet(Integer id, String name, LocalDate birthDate, String type, Long ownerId) {
+	public Pet(Long id, String name, LocalDate birthDate, String type, Long ownerId) {
 		super();
 		this.id = id;
 		this.name = name;
