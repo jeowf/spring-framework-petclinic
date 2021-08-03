@@ -2,8 +2,8 @@ import { http } from './configPet'
 
 export default {
 
-    listar:()=>{
-        return http.get('all')
+    listar:(owner_id)=>{
+        return http.get('all'.concat(owner_id))
     },
 
     salvar:(pet) => {

@@ -8,7 +8,7 @@
           <label>Pet Name</label>
           <input type="text" placeholder="Pet Name" v-model="testPet.name">
           <label>Birthdate</label>
-          <input type="text" placeholder="yyyy-mm-dd" v-model="testPet.birthdate">
+          <input type="text" placeholder="yyyy-mm-dd" v-model="testPet.birthDate">
           <label>Type</label>
           <input type="text" placeholder="Cat" v-model="testPet.type">
 
@@ -33,7 +33,7 @@
             <tr v-for="pet of pets" :key="pet.id">
 
             <td>{{ pet.name }}</td>
-            <td>{{ pet.birthdate }}</td>
+            <td>{{ pet.birthDate }}</td>
             <td>{{ pet.type }}</td>
             <td>
               <button @click="editar(pet)" class="waves-effect btn-small blue darken-1"><i class="material-icons">create</i></button>
@@ -61,7 +61,7 @@
         testPet: {
           id: '',
           name: '',
-          birthdate: '',
+          birthDate: '',
           type: '',
           ownerId: ''
         },
@@ -74,13 +74,13 @@
     mounted(){
       this.owner_id = localStorage.getItem("owner-id");
       this.owner_name = localStorage.getItem("owner-name");
-      this.listar()
+      this.listar(this.owner_id)
     },
 
     methods:{
 
       listar(){
-          Pet.listar().then(resposta => {
+          Pet.listar(this.owner_id).then(resposta => {
           this.pets = resposta.data
         })
       },
@@ -91,13 +91,13 @@
             Pet.salvar(this.testPet).then(resposta=>{
             this.testPet = {}
             resposta.data
-            this.listar()
+            this.listar(this.owner_id)
           })
         }else{
           Pet.atualizar(this.testPet).then(resposta=>{
             this.testPet = {}
             resposta.data
-            this.listar()
+            this.listar(this.owner_id)
           })
         }
       },
@@ -111,7 +111,7 @@
         if(confirm('Deseja excluir o pet '.concat(pet.name) + '?')){
           Pet.apagar(pet.id).then(resposta=>{
             resposta.data
-            this.listar()
+            this.listar(this.owner_id)
           })
         }
       }
