@@ -23,6 +23,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -44,68 +47,72 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "pets")
-public class Pet extends NamedEntity {
+public class Pet {
 
-    @Column(name = "birth_date")
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+	
+	private String name;
+	
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate birthDate;
 
-    @ManyToOne
-    @JoinColumn(name = "type_id")
-    private PetType type;
+    private String type;
 
-    @ManyToOne
-    @JoinColumn(name = "owner_id")
-    private Owner owner;
+    private Long ownerId;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
-    private Set<Visit> visits;
+	public Integer getId() {
+		return id;
+	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public LocalDate getBirthDate() {
-        return this.birthDate;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public PetType getType() {
-        return this.type;
-    }
+	public LocalDate getBirthDate() {
+		return birthDate;
+	}
 
-    public void setType(PetType type) {
-        this.type = type;
-    }
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
+	}
 
-    public Owner getOwner() {
-        return this.owner;
-    }
+	public String getType() {
+		return type;
+	}
 
-    protected void setOwner(Owner owner) {
-        this.owner = owner;
-    }
+	public void setType(String type) {
+		this.type = type;
+	}
 
-    protected Set<Visit> getVisitsInternal() {
-        if (this.visits == null) {
-            this.visits = new HashSet<>();
-        }
-        return this.visits;
-    }
+	public Long getOwnerId() {
+		return ownerId;
+	}
 
-    protected void setVisitsInternal(Set<Visit> visits) {
-        this.visits = visits;
-    }
+	public void setOwnerId(Long ownerId) {
+		this.ownerId = ownerId;
+	}
 
-    public List<Visit> getVisits() {
-        List<Visit> sortedVisits = new ArrayList<>(getVisitsInternal());
-        PropertyComparator.sort(sortedVisits, new MutableSortDefinition("date", false, false));
-        return Collections.unmodifiableList(sortedVisits);
-    }
+	public Pet(Integer id, String name, LocalDate birthDate, String type, Long ownerId) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.birthDate = birthDate;
+		this.type = type;
+		this.ownerId = ownerId;
+	}
 
-    public void addVisit(Visit visit) {
-        getVisitsInternal().add(visit);
-        visit.setPet(this);
+    public Pet() {
+    	
     }
 
 }
