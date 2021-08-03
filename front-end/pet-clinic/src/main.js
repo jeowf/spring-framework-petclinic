@@ -39,6 +39,8 @@ import HelloWorld from '@/components/HelloWorld'
 import Owner from '@/components/Owner'
 import Client from '@/components/Client'
 import Vet from '@/components/Vet'
+import Pet from '@/components/Pet'
+
 const routes = [
     {
       path: '/',
@@ -69,6 +71,11 @@ const routes = [
       path: '/Vet',
       name: 'Vet',
       component: Vet
+    },
+    {
+      path: '/pet',
+      name: 'Pet',
+      component: Pet
     }
 ]
 

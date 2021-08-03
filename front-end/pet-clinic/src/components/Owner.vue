@@ -45,6 +45,7 @@
             <td>
               <button @click="editar(owner)" class="waves-effect btn-small blue darken-1"><i class="material-icons">create</i></button>
               <button @click="remover(owner)" class="waves-effect btn-small red darken-1"><i class="material-icons">delete_sweep</i></button>
+              <button @click="redirect(owner)" class="waves-effect btn-small black darken-1"><i class="material-icons">pets</i></button>
             </td>
 
           </tr>
@@ -117,6 +118,12 @@
             this.listar()
           })
         }
+      },
+
+      redirect(owner){
+        localStorage.setItem("owner-id", owner.id);
+        localStorage.setItem("owner-name", owner.firstName);
+        this.$router.push(this.$route.query.redirect || "/pet");
       }
 
     }
