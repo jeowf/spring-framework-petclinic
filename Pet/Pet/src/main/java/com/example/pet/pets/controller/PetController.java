@@ -64,6 +64,18 @@ public class PetController {
 		}
 	}
 	
+	@GetMapping("/all/{id}")
+	public List<Pet> getAllByOwner(@PathVariable Long id) 
+	{
+		try 
+		{
+			return petRepository.findByOwnerId(id);
+		}catch(Exception e) 
+		{
+			return null;
+		}
+	}
+	
 	@GetMapping("/{id}")
 	public Pet getPet(@PathVariable Long id) 
 	{
