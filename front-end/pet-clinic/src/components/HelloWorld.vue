@@ -3,7 +3,6 @@
     <a> <router-link to="/login"> Login </router-link> </a>
     <a> <router-link to="/register"> Register </router-link> </a>
     <a> <router-link to="/vet"> Veterinário </router-link> </a>
-    <a> <router-link to="/pet"> Pets </router-link> </a>
   </div>
 </template>
 
