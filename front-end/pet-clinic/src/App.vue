@@ -7,6 +7,7 @@
         <li><a> <router-link to="/Owner"> Owner </router-link> </a></li>
         <li><a> <router-link to="/Client"> Client </router-link> </a></li>
         <li><a> <router-link to="/Vet"> Vet </router-link> </a></li>
+        <li><a> <router-link to="/VetConsultation"> Vet consultation </router-link> </a></li>
       </ul>
     </div>
   </nav>

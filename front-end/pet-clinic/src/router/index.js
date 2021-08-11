@@ -49,6 +49,7 @@ import {
   import Register from '@/components/Register'
   import HelloWorld from '@/components/HelloWorld'
   import Vet from '@/components/Vet'
+  import VetConsultation from '@/components/VetConsultation'
 
   const routes = [
     {
@@ -70,7 +71,12 @@ import {
       path: '/vet',
       name: 'Vet',
       component: Vet
-    }
+    },
+    {
+      path: '/VetConsultation',
+      name: 'VetConsultation',
+      component: VetConsultation
+    },
 ]
   
   const router = createRouter({
