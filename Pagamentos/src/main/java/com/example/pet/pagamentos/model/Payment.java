@@ -4,10 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "pets")
 public class Payment 
 {
 	@Id
@@ -42,12 +40,12 @@ public class Payment
 		this.id = id;
 	}
 
-	public Long getVisit() 
+	public Long getVisitId() 
 	{
 		return visitId;
 	}
 
-	public void setVisit(Long visit) 
+	public void setVisitId(Long visit) 
 	{
 		this.visitId = visit;
 	}
