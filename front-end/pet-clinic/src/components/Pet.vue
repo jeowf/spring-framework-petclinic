@@ -38,6 +38,7 @@ Guardar Consulta<template>
             <td>
               <button @click="editar(pet)" class="waves-effect btn-small blue darken-1"><i class="material-icons">create</i></button>
               <button @click="remover(pet)" class="waves-effect btn-small red darken-1"><i class="material-icons">delete_sweep</i></button>
+              <button @click="redirect(pet)" class="waves-effect btn-small black darken-1"><i class="material-icons">pets</i></button>
             </td>
 
           </tr>
@@ -114,6 +115,11 @@ Guardar Consulta<template>
             this.listar(this.owner_id)
           })
         }
+      },
+
+      redirect(pet){
+        localStorage.setItem("cache-pet", JSON.stringify(pet));
+        this.$router.push(this.$route.query.redirect || "/visit");
       }
 
     }

@@ -50,6 +50,7 @@ import {
   import HelloWorld from '@/components/HelloWorld'
   import Vet from '@/components/Vet'
   import VetConsultation from '@/components/VetConsultation'
+  import Visit from '@/components/Visit'
 
   const routes = [
     {
@@ -77,6 +78,11 @@ import {
       name: 'VetConsultation',
       component: VetConsultation
     },
+    {
+      path: '/visit',
+      name: 'Visit',
+      component: Visit
+    }
 ]
   
   const router = createRouter({

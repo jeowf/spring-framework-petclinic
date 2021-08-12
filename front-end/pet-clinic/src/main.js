@@ -41,6 +41,7 @@ import Client from '@/components/Client'
 import Vet from '@/components/Vet'
 import Pet from '@/components/Pet'
 import VetConsultation from '@/components/VetConsultation'
+import Visit from '@/components/Visit'
 
 const routes = [
     {
@@ -83,6 +84,11 @@ const routes = [
       name: 'VetConsultation',
       component: VetConsultation
     },
+    {
+      path: '/visit',
+      name: 'Visit',
+      component: Visit
+    }
 ]
 
 const router = createRouter({

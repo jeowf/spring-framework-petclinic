@@ -42,8 +42,6 @@ public class Orchestra {
 		Payment payment = new Payment(null, visitId,rng.nextDouble()*50+10,"Waiting");
 		
 		return restTemplate.postForEntity(pay_url+"new", payment, Payment.class).getBody();
-		
-		
 	}
 	
 }
