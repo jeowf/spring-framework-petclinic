@@ -28,6 +28,8 @@ public class VetController {
 	
 	final static String ROOT_URI = "http://localhost:";
 	
+	Long next_id = 0l;
+	
 	@PostMapping("/")
 	public String newVet(@RequestBody NewVetRequest request) {
 		Vet vet = request.toModel();
@@ -95,5 +97,18 @@ public class VetController {
 		}
 		
 		return "Success";
+	}
+	
+	@GetMapping("available")
+	public Vet getAvailableVet() {
+		try 
+		{
+			next_id = (next_id+1)%2;
+			return vetRepository.findById(next_id+1).get();
+		}catch(Exception e) 
+		{
+			return null;
+		}
+
 	}
 }

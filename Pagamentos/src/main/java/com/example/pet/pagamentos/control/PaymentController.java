@@ -25,17 +25,17 @@ public class PaymentController
 	PaymentRepository paymentRepository;
 	
 	@PostMapping("/new")
-	public String cadastroPayment(@RequestBody Payment payment) 
+	public Payment cadastroPayment(@RequestBody Payment payment) 
 	{
 		try 
 		{
 			paymentRepository.save(payment);
+			return payment;
 		}catch(Exception e) 
 		{
-			return "error";
+			return null;
 		}
 		
-		return "Success";
 	}
 	
 	@PutMapping("/edit")

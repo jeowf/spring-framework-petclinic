@@ -25,17 +25,17 @@ public class VisitController {
 	VisitRepository visitRepository;
 	
 	@PostMapping("/new")
-	public String cadastroVisit(@RequestBody Visit visit) 
+	public Long cadastroVisit(@RequestBody Visit visit) 
 	{
 		try 
 		{
 			visitRepository.save(visit);
+			return visit.getId();
 		}catch(Exception e) 
 		{
-			return "error";
+			return -1l;
 		}
 		
-		return "Success";
 	}
 	
 	@PutMapping("/edit")
