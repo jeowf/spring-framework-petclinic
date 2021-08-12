@@ -3,16 +3,15 @@ package com.example.pet.pagamentos.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.Id;
-
 @Entity
-@Table(name="payment")
+@Table(name = "pets")
 public class Payment 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	private Long visitId;
