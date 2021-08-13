@@ -26,22 +26,22 @@ public class Orchestra {
 	private static String pay_url = "http://localhost:9034/payment/";
 	
 	@PostMapping("/create-visit")
-	public Payment createVisit(@RequestBody Pet pet) {
-		System.out.println("PAO");
+	public Visit createVisit(@RequestBody Pet pet) {
 		RestTemplate restTemplate = new RestTemplate();
 		String uri = vet_url + "available";
 		ResponseEntity<Vet> response = restTemplate.getForEntity(uri, Vet.class);
 		
 		Visit visit = new Visit(null, pet.getOwnerId(), pet.getId(), response.getBody().getId(), LocalDate.now(), " ", "Opened");
-		
-		
 		Long visitId = restTemplate.postForEntity(visit_url+"new", visit, Long.class).getBody();
+		visit.setId(visitId);
 		
 		Random rng = new Random();
 		
 		Payment payment = new Payment(null, visitId,rng.nextDouble()*50+10,"Waiting");
 		
-		return restTemplate.postForEntity(pay_url+"new", payment, Payment.class).getBody();
+		restTemplate.postForEntity(pay_url+"new", payment, Payment.class);
+		
+		return visit;
 	}
 	
 }

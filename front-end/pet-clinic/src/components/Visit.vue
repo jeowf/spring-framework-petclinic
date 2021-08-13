@@ -10,10 +10,8 @@
           <input type="text" disabled=true :value=cache_pet.name>
           <label>Date:</label>
           <input type="text" disabled=true :value=testVisit.date>
-          <label>Descrição:</label>
-          <input type="text" disabled=true :value=testVisit.description>
 
-          <button @click="redirect()" class="waves-effect waves-light btn-small">Confirmar<i class="material-icons left">save</i></button>
+          <button @click="redirect()" class="waves-effect waves-light btn-small">Voltar para owners<i class="material-icons left">save</i></button>
 
       </form>
     </div>
@@ -44,31 +42,22 @@
             description: '',
             status: ''
         },
-        cache_payment: {
-            id: '',
-            visitId: '',
-            value: '',
-            status: '',
-        },
         owner_name: null,
-        resposta: null
       }
     },
 
     mounted(){
-      this.cache_pet = localStorage.getItem("cache-pet");
+      this.cache_pet = JSON.parse(localStorage.getItem("cache-pet"));
       this.owner_name = localStorage.getItem("owner-name");
-      this.resposta = Visit.salvar(this.cache_pet);
-      console.log(this.resposta);
-      this.testVisit = this.resposta.data.visit;
-      this.cache_payment = this.resposta.data.payment
+      Visit.salvar(this.cache_pet).then(resposta=>{
+          this.testVisit = resposta.data;
+      });   
     },
 
     methods:{
 
       redirect(){
-        localStorage.setItem("payment-cache", this.cache_payment);
-        this.$router.push(this.$route.query.redirect || "/");
+        this.$router.push(this.$route.query.redirect || "/Owner");
       }
 
     }

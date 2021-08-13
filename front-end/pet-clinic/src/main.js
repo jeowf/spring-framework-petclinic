@@ -42,6 +42,7 @@ import Vet from '@/components/Vet'
 import Pet from '@/components/Pet'
 import VetConsultation from '@/components/VetConsultation'
 import Visit from '@/components/Visit'
+import Payment from '@/components/Payment'
 
 const routes = [
     {
@@ -88,6 +89,11 @@ const routes = [
       path: '/visit',
       name: 'Visit',
       component: Visit
+    },
+    {
+      path: '/payment',
+      name: 'Payment',
+      component: Payment
     }
 ]
 
