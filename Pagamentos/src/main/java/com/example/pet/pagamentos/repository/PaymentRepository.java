@@ -8,5 +8,5 @@ import com.example.pet.pagamentos.model.Payment;
 
 public interface PaymentRepository extends JpaRepository<Payment, Long>
 {
-	public List<Payment> findByVisitId(Long visitId);
+	public Payment findByVisitId(Long visitId);
 }

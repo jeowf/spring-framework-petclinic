@@ -1,10 +1,14 @@
 package com.example.pet.web;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +46,26 @@ public class Orchestra {
 		restTemplate.postForEntity(pay_url+"new", payment, Payment.class);
 		
 		return visit;
+	}
+	
+	@GetMapping("/payments/{id}")
+	public List<Payment> getPaymentsFromOwner(@PathVariable Long id){
+		RestTemplate restTemplate = new RestTemplate();
+		Visit[] visits = restTemplate.getForEntity(visit_url+"owner/"+id, Visit[].class).getBody();
+		
+		
+		List<Payment> out = new ArrayList<>();
+		
+		for (Visit v : visits) {
+			Payment p = restTemplate.getForEntity(pay_url+"all/"+v.getId(), Payment.class).getBody();
+			if (p != null)
+				out.add(p);
+			
+		}
+		
+		
+		
+		return out;
 	}
 	
 }

@@ -65,7 +65,7 @@ public class PaymentController
 	}
 	
 	@GetMapping("/all/{id}")
-	public List<Payment> getAllByVisit(@PathVariable Long id) 
+	public Payment getAllByVisit(@PathVariable Long id) 
 	{
 		try 
 		{
