@@ -52,7 +52,6 @@
 
     mounted(){
       this.owner_id = localStorage.getItem("owner-id");
-      console.log(this.owner_id)
       this.listar(this.owner_id)
     },
 
