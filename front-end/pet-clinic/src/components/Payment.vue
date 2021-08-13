@@ -22,7 +22,8 @@
             <td>{{ payment.value }}</td>
             <td>{{ payment.status }}</td>
             <td>
-              <button @click="editar(payment)" class="waves-effect btn-small blue darken-1"><i class="material-icons">create</i></button>
+              <button @click="editar(payment)" class="waves-effect btn-small blue darken-1"><i class="material-icons">check</i></button>
+              <button @click="editar2(payment)" class="waves-effect btn-small red darken-1"><i class="material-icons">close</i></button>
             </td>
 
           </tr>
@@ -38,6 +39,7 @@
 
 <script>
   import Payment from '../services/payment'
+  import Payment2 from '../services/payment2'
 
   export default {
 
@@ -57,17 +59,30 @@
     methods:{
 
       listar(id){
-          Payment.listar(id).then(resposta => {
+          Payment2.listar(id).then(resposta => {
           this.payments = resposta.data
         })
       },
 
       editar(payment){
-        payment.status = "Ok";
-        Payment.atualizar(payment).then(resposta=>{
-            resposta.data
-            this.listar(this.owner_id)
+        if(payment.status != "Cancelado")
+        {
+            payment.status = "Ok";
+            Payment.atualizar(payment).then(resposta=>{
+                resposta.data
+                this.listar(this.owner_id)
           })
+        }
+      },
+
+      editar2(payment){
+        if(payment.status != "Ok"){
+            payment.status = "Cancelado";
+            Payment.atualizar(payment).then(resposta=>{
+                resposta.data
+                this.listar(this.owner_id)
+          })
+        }
       },
 
       redirect(){

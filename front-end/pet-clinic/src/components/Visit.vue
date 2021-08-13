@@ -11,7 +11,7 @@
           <label>Date:</label>
           <input type="text" disabled=true :value=testVisit.date>
 
-          <button @click="redirect()" class="waves-effect waves-light btn-small">Voltar para owners<i class="material-icons left">save</i></button>
+          <button @click="redirect()" class="waves-effect waves-light btn-small">Voltar para owners<i class="material-icons left">assignment_return</i></button>
 
       </form>
     </div>

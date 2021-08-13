@@ -46,7 +46,7 @@
               <button @click="editar(owner)" class="waves-effect btn-small blue darken-1"><i class="material-icons">create</i></button>
               <button @click="remover(owner)" class="waves-effect btn-small red darken-1"><i class="material-icons">delete_sweep</i></button>
               <button @click="redirect(owner)" class="waves-effect btn-small black darken-1"><i class="material-icons">pets</i></button>
-              <button @click="redirect_pagamento(owner)" class="waves-effect btn-small green darken-1"><i class="material-icons">pets</i></button>
+              <button @click="redirect_pagamento(owner)" class="waves-effect btn-small green darken-1"><i class="material-icons">local_atm</i></button>
             </td>
 
           </tr>
